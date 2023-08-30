@@ -1,3 +1,2 @@
-# Description: script that changes the working directory to the user’s home directory.
 #!/bin/bash
 cd ~
