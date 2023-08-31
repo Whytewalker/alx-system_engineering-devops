@@ -1,2 +1,4 @@
 #!/bin/bash
-sudo chown guillaume:betty hello
+if [ "$(stat -c %U hello)" = "guillaume" ]; then
+    chown betty: hello
+fi
