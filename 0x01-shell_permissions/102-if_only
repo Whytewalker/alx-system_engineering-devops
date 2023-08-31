@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $(stat -c %U hello) = "guillaume" ]
+if [ "$USER" == "guillaume" ]
 then
-    chown betty hello
+    chown guillaume:betty hello
 fi
