@@ -1,23 +1,2 @@
 #!/bin/bash
-# Write a script that encodes and decodes text using the rot13 encryption. Assume ASCII.
-
-#echo "$1" | tr 'A-Za-z' 'N-ZA-Mn-za-m'
-
-if [ '$#' -eq 0 ] || ( [ "$1" != "encode" ] && [ "$1" != "decode" ] ); then
-    operation="encode"
-else
-    operation="$1"
-    shift
-fi
-
-while read -r line; do
-    if [ "$operation" == "encode" ]; then
-        encode_line=$(echo "$line" | tr 'A-Za-z' 'N-ZA-Mn-za-m')
-        echo "$encode_line"
-    else
-        decode_line=$(echo "$line" | tr 'N-ZA-Mn-za-m' 'A-Za-z')
-        echo "$decode_line"
-    fi
-done
-
-exit 0
+tr 'A-Za-z' 'N-ZA-Mn-za-m'
