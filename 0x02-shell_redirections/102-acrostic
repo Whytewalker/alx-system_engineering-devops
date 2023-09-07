@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -o '^.'
+cut -c 1 | tr -d '\n' | sort
