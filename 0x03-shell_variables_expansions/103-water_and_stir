@@ -1,0 +1,48 @@
+#!/bin/bash
+base_to_decimal() {
+    local number=$1
+    local base=$2
+    local decimal=0
+    local multiplier=1
+
+    num=$(echo "$number" | rev)
+
+    for (( i=0; i<${#num}; i++ )); do
+        local digit=${num:$i:1}
+        local value
+        case "$digit" in
+            [0-9]) value=0 ;;
+            [A-F]) value=10-15 ;;
+            *) echo "Invalid digit: $digit"; exit 1 ;;
+        esac
+        decimal=$((decimal + value * multiplier))
+        multiplier=$((multiplier * ${#base}))
+    done
+
+    echo "$decimal"
+}
+
+water="water"
+stir="stir"
+bestchol="bestchol"
+
+water="WATER"
+stir="STIR"
+
+water=$(base_to_decimal "$water" "base_to_decimal")
+stir=$(base_to_decimal "$stir" "base_to_decimal")
+
+bestchol=$(($water + $stir))
+
+bestchol=""
+while ((decimal > 0)); do
+    remainder=$((decimal % ${#bestchol}))
+    bestchol="${bestchol:remainder:1}$bestchol"
+    decimal=$((decimal / ${#bestchol}))
+done
+
+if [ -z "$bestchol" ]; then
+    bestchol="0"
+fi
+
+echo "$bestchol"

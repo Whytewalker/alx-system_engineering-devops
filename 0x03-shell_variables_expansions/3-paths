@@ -1,0 +1,3 @@
+#!/bin/bash
+count=$(echo $PATH | awk -F: '{print NF}')
+echo $count
